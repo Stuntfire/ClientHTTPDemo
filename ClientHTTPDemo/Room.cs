@@ -19,5 +19,12 @@ namespace ClientHTTPDemo
         public virtual ICollection<Booking> Booking { get; set; }
 
         public virtual Hotel Hotel { get; set; }
+
+        public override string ToString()
+        {
+            //return string.Format("HotelNo: {0}, Name: {1}, Address: {2}", HotelNo, Name, Address);
+            //return string.Format( " " + Room_No + " " + Hotel_No + " " + Types + " " + Price );
+            return " " + Room_No + " " + Hotel_No + " " + Types + " " + Price;
+        }
     }
 }
