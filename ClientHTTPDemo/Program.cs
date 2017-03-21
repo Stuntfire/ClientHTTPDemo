@@ -192,9 +192,33 @@ namespace ClientHTTPDemo
                 {
                     Console.WriteLine("Der er sket en fejl : " + e.Message);
                 }
+
+                //Opgave 6
+                Console.WriteLine("\nOPGAVE 6: Delete (HTTP Delete) the Hotel number 200");
+
+                string urlStringDelete = "API/Hotels/200";
+
+                try
+                {
+                    HttpResponseMessage response = client.DeleteAsync(urlStringDelete).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("Du har slettet et hotel");
+                        Console.WriteLine("Statuskode : " + response.StatusCode);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Fejl, hotellet blev ikke slettet");
+                        Console.WriteLine("Statuskode : " + response.StatusCode);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Der er sket en fejl : " + e.Message);
+                }
+
             }
 
         }
-
     }
 }
