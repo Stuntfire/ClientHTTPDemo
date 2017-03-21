@@ -129,7 +129,7 @@ namespace ClientHTTPDemo
                 }
 
                 //Opgave 4
-                Console.WriteLine("\nOPGAVE 4");
+                Console.WriteLine("\nOPGAVE 4: Update (HTTP Put) hotel number 3");
                 string urlStringGetHotel3 = "api/hotels/3";
 
                 try
@@ -164,8 +164,37 @@ namespace ClientHTTPDemo
                 {
                     Console.WriteLine("Der er sket en fejl : " + e.Message);
                 }
+
+                //Opgave 5
+                Console.WriteLine("\nOPGAVE 5: Insert (HTTP Post) a new hotel fx number 200");
+
+                var MyNewHotel = new Hotel()
+                {
+                    Hotel_No = 200,
+                    Name = "Snoop Doggy Dog Motel",
+                    Address = "Gran Avenue No 1",
+                };
+                try
+                {
+                    var response = client.PostAsJsonAsync<Hotel>("API/Hotels", MyNewHotel).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine("Du har indsat et nyt hotel");
+                        Console.WriteLine("Post Content: " + response.Content.ReadAsStringAsync());
+                    }
+                    else
+                    {
+                        Console.WriteLine("Fejl, hotellet blev ikke indsat");
+                        Console.WriteLine("Statuskode : " + response.StatusCode);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Der er sket en fejl : " + e.Message);
+                }
             }
 
         }
-        }
+
     }
+}
